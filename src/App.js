@@ -4,6 +4,7 @@ import {Route,Routes} from 'react-router-dom'
 import Moreinfo from "./component/Moreinfo";
 import Template from "./component/Template";
 import EditCv from "./component/EditCv";
+import cvtepmlate from "./component/data/cvtemplate";
 export default function App() {
   return (
     <>
@@ -17,7 +18,7 @@ export default function App() {
       <Route path="/login" element={<Home/>}/>
         </Routes>
         <Moreinfo/>
-        <Template/>
+        <Template cvtepmlate={cvtepmlate}/>
         <EditCv/>
 
     </>
