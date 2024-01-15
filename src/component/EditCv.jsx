@@ -5,6 +5,7 @@ import img3 from '../asset/img3.svg'
 import { FaDownload } from 'react-icons/fa'
 function EditCv() {
   return (
+    <>
     <div className='flex flex-col items-center mt-12'>
         <h1 className='font-bold text-3xl mb-2'>The features of the CV editor</h1>
         <h5 className='font-bold text-xl '>to customize my CV without limits</h5>
@@ -37,6 +38,8 @@ function EditCv() {
         <p className='text-xl'>Download you CV in PDF for free or share it with a link</p>
         <h1 className='my-4 text-3xl  rounded-xl text-pink-500'><FaDownload/></h1>
     </div>
+        <div className='w-full h-10 bg-blue-500'></div>
+    </>
   )
 }
 

@@ -5,21 +5,28 @@ import Moreinfo from "./component/Moreinfo";
 import Template from "./component/Template";
 import EditCv from "./component/EditCv";
 import cvtepmlate from "./component/data/cvtemplate";
+import Gain from "./component/Gain";
+import Apply from "./component/Apply";
+import Commentaire from "./component/Commentaire";
+import Footer from "./component/Footer";
 export default function App() {
   return (
     <>
      <Hedear/> 
-     
-     <Routes>
-      <Route path="/"  element={<Home/>}/>
-      <Route path="/make" element={<Home/>}/>
-      <Route path="/Apply" element={<Home/>}/>
-      <Route path="/create" element={<Home/>}/>
-      <Route path="/login" element={<Home/>}/>
-        </Routes>
+      <Routes>
+        <Route path="/"  element={<Home/>}/>
+        <Route path="/make" element={<Home/>}/>
+        <Route path="/Apply" element={<Home/>}/>
+        <Route path="/create" element={<Home/>}/>
+        <Route path="/login" element={<Home/>}/>
+      </Routes>
         <Moreinfo/>
         <Template cvtepmlate={cvtepmlate}/>
         <EditCv/>
+        <Gain/>
+        <Apply/>
+        <Commentaire/>
+        <Footer/>
 
     </>
   )
