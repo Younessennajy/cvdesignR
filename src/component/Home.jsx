@@ -2,10 +2,21 @@ import React from 'react';
 import cv1 from './../asset/cv1.png';
 import cv2 from './../asset/cv2.png';
 import { FaBookOpen, FaPencilAlt, FaStar } from 'react-icons/fa';
+import Hedear from "./Hedear";
+import Moreinfo from "./Moreinfo";
+import Template from "./Template";
+import EditCv from "./EditCv";
+import cvtepmlate from "./data/cvtemplate";
+import Gain from "./Gain";
+import Apply from "./Apply";
+import Commentaire from "./Commentaire";
+import Footer from "./Footer";
 
 function Home() {
   return (
     <>
+    <Hedear/> 
+    <div>
       <div className="flex flex-col md:flex-row justify-center items-center py-16 bg-gradient-to-r from-fuchsia-100 via-blue-500 to-purple-500 ">
         <div className="w-full xl:w-full  md:w-2/5 m h-auto md:h-50 p-8 font-sans text-center md:text-center">
           <h2 className="text-2xl font-bold mb-5 w-full md:w-4/5">
@@ -51,7 +62,18 @@ function Home() {
         </button>
         
       </div><h5 className='text-center text-sm'>Free sign up</h5>
+
+        
+    </div>
+    <Moreinfo/>
+        <Template cvtepmlate={cvtepmlate}/>
+        <EditCv/>
+        <Gain/>
+        <Apply/>
+        <Commentaire/>
+        <Footer/>
     </>
+
   );
 }
 

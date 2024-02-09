@@ -1,33 +1,20 @@
-import Hedear from "./component/Hedear";
-import Home from "./component/Home";
 import {Route,Routes} from 'react-router-dom'
-import Moreinfo from "./component/Moreinfo";
-import Template from "./component/Template";
-import EditCv from "./component/EditCv";
-import cvtepmlate from "./component/data/cvtemplate";
-import Gain from "./component/Gain";
-import Apply from "./component/Apply";
-import Commentaire from "./component/Commentaire";
-import Footer from "./component/Footer";
-export default function App() {
+import Login from "./component/Login";
+import Home from "./component/Home";
+import Sign from './component/Sign';
+import Section from './component/CVEditor/Section';
+import Create from './component/Create';
+
+export default function App(){
   return (
     <>
-     <Hedear/> 
       <Routes>
         <Route path="/"  element={<Home/>}/>
-        <Route path="/make" element={<Home/>}/>
-        <Route path="/Apply" element={<Home/>}/>
-        <Route path="/create" element={<Home/>}/>
-        <Route path="/login" element={<Home/>}/>
+        {/*<Route path="/Apply" element={<Home/>}/>*/}
+        <Route path="/create" element={<Section/>}/> 
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/Sign" element={<Sign/>}/>
       </Routes>
-        <Moreinfo/>
-        <Template cvtepmlate={cvtepmlate}/>
-        <EditCv/>
-        <Gain/>
-        <Apply/>
-        <Commentaire/>
-        <Footer/>
-
     </>
   )
 }

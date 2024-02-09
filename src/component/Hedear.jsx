@@ -20,7 +20,7 @@ function Header() {
         </button>
         <div className={`ml-auto sm:flex ${showMenu ? 'flex' : 'hidden'} flex-col sm:flex-row`}>
           <button className="ml-auto hover:underline">
-            <Link to="/make" className="text-black  max-sm:hidden">
+            <Link to="/edit" className="text-black  max-sm:hidden">
               Make a Cv
             </Link>
           </button>
