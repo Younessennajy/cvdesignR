@@ -33,6 +33,8 @@ function Aside() {
   const [maritalStatus, setMaritalStatus] = useState('Single');
   const [nationality, setNationality] = useState('moroccan');
   const [profileImage, setProfileImage] = useState('');
+  const [language, setLanguage] = useState('');
+  const [languageLevel, setLanguageLevel] = useState(0);
   
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -56,6 +58,7 @@ function Aside() {
       maritalStatus,
       nationality,
       profileImage,
+      languages: [{ language, level: languageLevel }],
     };
     dispatch(modifierInfo(updatedInfo));
   };
@@ -145,6 +148,13 @@ function Aside() {
                 }
               </select>
 
+              <label htmlFor="language">Language</label>
+              <input type="text" name="language" id="language" className='mb-2' value={language} onChange={(e) => setLanguage(e.target.value)} />
+
+              <label htmlFor="languageLevel">Language Level</label>
+              <input type="range" min="0" max="10" step="1" name="languageLevel" id="languageLevel" className='mb-2' value={languageLevel} onChange={(e) => setLanguageLevel(parseInt(e.target.value, 10))} />
+              <span>{languageLevel}</span>
+
               {profileImage && (
                 <img src={profileImage} alt="Profile" className="mt-2 mb-4 rounded-full" style={{ width: '100px', height: '100px' }} />
               )}
@@ -155,7 +165,7 @@ function Aside() {
             </form>
           </motion.div>
         </div>
-        {hidenitem == true ? (
+        {hidenitem === true ? (
           <div className='flex justify-start items-start cursor-pointer'>
             <FaArrowRight onClick={() => sethidden(false)} />
           </div>
