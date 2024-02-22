@@ -5,10 +5,12 @@ import Aside from './Aside';
 import { FaTrash } from 'react-icons/fa';
 
 import { useSelector } from 'react-redux';
-import PersonnalInfo from './AddInfo/PersonnalInfo';
-import DiplomaInformation from './AddInfo/Diploma_information';
-import CompetenceInformation from './AddInfo/CompetenceInformation';
+import PersonnalInfo from './AddInfo/PersonalInfo/PersonnalInfo';
+import DiplomaInformation from './AddInfo/Diploma/Diploma_information';
+import CompetenceInformation from './AddInfo/Competence/CompetenceInformation';
 import Langues from './AddInfo/Langues';
+import AddInterest from './AddInfo/Interrest/AddInterest';
+import AddSocialMedia from './AddInfo/SocialMedia/AddSocialMedia';
 
 function Section() {
   const [Hiddenimage, sethiddenimage] = useState(true);
@@ -54,6 +56,7 @@ function Section() {
                 <div className="leftcv">
                   <PersonnalInfo data={data} />
                   <Langues data={languesData} />
+                  <AddInterest  />
                 </div>
             </div>
         </div>
@@ -79,14 +82,18 @@ function Section() {
                         />
                 </div>
                 <div className="per">
-                  <DiplomaInformation
+                  {/* <DiplomaInformation
                     setHoverdep={setHoverdep}
                       hoverDip={hoverDip}
-                        />
+                        /> */}
                    <CompetenceInformation
                       setHovercomp={setHovercomp} 
                         hoverComp={hoverComp} />
-                </div>
+                    {/* <AddSocialMedia
+                      setHovercomp={setHovercomp} 
+                        hoverComp={hoverComp} /> */}
+                    
+                                  </div>
                 
           </div>
 

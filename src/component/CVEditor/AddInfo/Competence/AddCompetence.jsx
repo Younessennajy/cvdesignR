@@ -1,30 +1,37 @@
-// AddDiploma.jsx
+// AddCompetence.jsx
 import React, { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import{addCompetence, updateCompetence} from './../../../store/Slice';
 
-function AddDiploma({ visible, onClose, onAddOrUpdateDiploma, selectedDiploma }) {
-  const [diplomaData, setDiplomaData] = useState(selectedDiploma || {
-    diploma: '',
-    school: '',
-    place: '',
-    details: '',
+function AddCompetence({ visible, onClose, selectedCompetence }) {
+  const [competenceData, setCompetenceData] = useState(selectedCompetence || {
+    title: '',
+    description: '',
   });
+  const dispatch = useDispatch();
 
-  const isUpdateMode = !!selectedDiploma;
+
+  const isUpdateMode = !!selectedCompetence;
 
   const handleCancel = () => {
     onClose();
   };
 
   const handleUpdate = () => {
-    onAddOrUpdateDiploma(diplomaData, isUpdateMode);
+    if (isUpdateMode) {
+      dispatch(updateCompetence(competenceData));
+    } else {
+      dispatch(addCompetence(competenceData));
+    }
+
     onClose();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDiplomaData({
-      ...diplomaData,
+    setCompetenceData({
+      ...competenceData,
       [name]: value,
     });
   };
@@ -47,54 +54,25 @@ function AddDiploma({ visible, onClose, onAddOrUpdateDiploma, selectedDiploma })
         </div>
         <form action='' className='flex flex-col'>
           <div className='my-3'>
-            <label htmlFor=''>Diploma</label>
+            <label htmlFor=''>Title</label>
             <br />
             <input
               type='text'
               className='w-full p-1'
-              placeholder='Diploma'
-              name='diploma'
-              value={diplomaData.diploma}
+              placeholder='Title'
+              name='title'
+              value={competenceData.title}
               onChange={handleChange}
             />
           </div>
 
-          <div className='flex justify-between my-3'>
-            <div className='mr-2'>
-              <label htmlFor=''>School</label>
-              <br />
-              <input
-                type='text'
-                className='p-1'
-                placeholder='School'
-                name='school'
-                value={diplomaData.school}
-                onChange={handleChange}
-              />
-            </div>
-            <div className=''>
-              <label htmlFor=''>Place</label>
-              <br />
-              <input
-                type='text'
-                className='p-1'
-                placeholder='Place'
-                name='place'
-                value={diplomaData.place}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
           <div className='my-4'>
-            <label htmlFor=''>Details</label>
-            <p>Lorem, ipsum dolor sit amet consectetur</p>
+            <label htmlFor=''>Description</label>
             <textarea
-              name='details'
-              id=''
+              name='description'
               cols='48'
               rows='4'
-              value={diplomaData.details}
+              value={competenceData.description}
               onChange={handleChange}
             ></textarea>
           </div>
@@ -112,4 +90,4 @@ function AddDiploma({ visible, onClose, onAddOrUpdateDiploma, selectedDiploma })
   );
 }
 
-export default AddDiploma;
+export default AddCompetence;
