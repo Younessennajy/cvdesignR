@@ -9,7 +9,7 @@ function HeaderCV() {
         <img src={logo} alt="logo" className='size-12 mr-2' />
           <h5 className='flex items-center  mr-2'>My Document</h5><FaArrowRight className=' mr-2'/>
           <span className='flex relative'>
-            <input type="text" placeholder="Mu resume" className='border-slate-400 px-1 border' />
+            <input type="text" placeholder="Mu resume"  className='border-slate-400 px-1 border' />
               <FaPencilAlt className='ml-2 absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer' />
           </span>
       </div>

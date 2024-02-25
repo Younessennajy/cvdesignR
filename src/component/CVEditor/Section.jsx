@@ -4,30 +4,31 @@ import HeaderCV from './headerCV';
 import Aside from './Aside';
 import { FaTrash } from 'react-icons/fa';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PersonnalInfo from './AddInfo/PersonalInfo/PersonnalInfo';
 import DiplomaInformation from './AddInfo/Diploma/Diploma_information';
 import CompetenceInformation from './AddInfo/Competence/CompetenceInformation';
 import Langues from './AddInfo/Langues';
-import AddInterest from './AddInfo/Interrest/AddInterest';
-import AddSocialMedia from './AddInfo/SocialMedia/AddSocialMedia';
-
+import CentreInteret from './AddInfo/Interrest/CentreInteret';
+import Resiaux from './AddInfo/SocialMedia/AddSocialMedia';
+import {deleteProfileImage } from '../store/Slice'
 function Section() {
+
   const [Hiddenimage, sethiddenimage] = useState(true);
   const data = useSelector(d => d.informations.listinfo);
   const [hoverDip, setHoverdep] = useState(false);
   const [hoverComp, setHovercomp] = useState(false);
+  const dispatch = useDispatch();
+  const handleDeleteProfileImage = () => {
+    dispatch(deleteProfileImage());
 
-  const languesData = [
-    { language: 'Français', level: 'Avancé' },
-    { language: 'Anglais', level: 'Intermédiaire' },
-  ];
+  };
   return (
     <div>
       <div className="header"><HeaderCV /></div>
-        <div className="flex">
+        <div className="flex ">
           <Aside />
-          <div className="mx-4 my-6 bg-black flex border-4 shadow-lg w-2/4 h-150 justify-center items-center">
+          <div className="mx-4 my-6 bg-black flex border-4 shadow-lg w-2/4 h-auto  ">
                 <div className="w-80 flex flex-col justify-start items-center bg-blue-200 h-full"
                   style={{ resize: 'horizontal', overflow: 'auto' }}>
                       <div className="w-40 flex flex-col items-start ">
@@ -37,13 +38,12 @@ function Section() {
                               <span
                                 className='flex justify-start self-center cursor-pointer'
                                   style={{ display: Hiddenimage ? 'none' : 'block' }}>
-                                    <FaTrash />
+                                    <FaTrash  onClick={()=>handleDeleteProfileImage() } />
                               </span>
                               {data.map((item,index) => (
                                 <div key={index}>
                                   <img
                                     src={item.profileImage}
-                                      alt="pro"
                                         className='size-32 rounded-full'
                                         onClick={() => sethiddenimage(!Hiddenimage)}
                                 />
@@ -55,8 +55,10 @@ function Section() {
                 {/* personal info */}
                 <div className="leftcv">
                   <PersonnalInfo data={data} />
-                  <Langues data={languesData} />
-                  <AddInterest  />
+                  <Langues />
+                  <CentreInteret  />
+                  <Resiaux/>
+                  
                 </div>
             </div>
         </div>
@@ -82,23 +84,15 @@ function Section() {
                         />
                 </div>
                 <div className="per">
-                  {/* <DiplomaInformation
-                    setHoverdep={setHoverdep}
-                      hoverDip={hoverDip}
-                        /> */}
                    <CompetenceInformation
                       setHovercomp={setHovercomp} 
                         hoverComp={hoverComp} />
-                    {/* <AddSocialMedia
-                      setHovercomp={setHovercomp} 
-                        hoverComp={hoverComp} /> */}
-                    
                                   </div>
                 
           </div>
 
 
-        </div>
+          </div>
       </div>
     </div>
   );

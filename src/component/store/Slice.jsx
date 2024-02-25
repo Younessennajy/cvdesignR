@@ -24,7 +24,7 @@ const sliceinfo = createSlice({
         { language: 'French', level: 'Beginner' },
         { language: 'English', level: 'Advanced' },
       ],
-      Centreinteret:['dsssssf'],
+      Centreinteret:['dsssssf','zfeeer'],
       Resiaux:['qdzsd','sdfefr']
     },
   ],
@@ -48,6 +48,11 @@ const sliceinfo = createSlice({
 
   },
   reducers: {
+
+    deleteProfileImage: (state) => {
+      state.listinfo[0].profileImage = null; 
+    },
+
     ajouterInfo: (state, action) => {
       state.listinfo.push(action.payload);
     },
@@ -58,6 +63,10 @@ const sliceinfo = createSlice({
       if (langIndex !== -1) {
         state.listinfo[0].languages.splice(langIndex, 1);
       }
+    },
+    addLangue: (state, action) => {
+      const { language, level } = action.payload;
+      state.listinfo[0]?.languages.push({ language, level });
     },
     modifierInfo: (state, action) => {
       const { id, ...updatedInfo } = action.payload;
@@ -113,10 +122,11 @@ const sliceinfo = createSlice({
 });
 
 export const {
-      ajouterInfo,modifierInfo,deleteLangue,
+      deleteProfileImage,
+      ajouterInfo,modifierInfo,deleteLangue,addLangue,
       addCompetence, updateCompetence,deleteCompetence,
       addDiploma,updatediploma,deletediploma,
-
+      
   
   } = sliceinfo.actions;
 export default sliceinfo.reducer;

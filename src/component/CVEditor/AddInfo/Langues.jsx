@@ -1,36 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {deleteLangue} from './../../store/Slice';
-import { FaTrash } from 'react-icons/fa';
-
+import { deleteLangue } from './../../store/Slice';
+import { FaTrashAlt } from 'react-icons/fa';
 
 function Langues() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.informations.listinfo[0]);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const handleDeleteLanguage = (index) => {
-    dispatch(deleteLangue({ id: index }));
+    dispatch(deleteLangue({ index }));
   };
+  
+
   return (
-    <div>
-      <h2>Langues</h2>
+    <div className='mt-3'>
+      <h2 className='text-bold text-lg'>Langues</h2>
       <table>
-        <thead>
-          <tr>
-            <th>Language</th>
-            <th>Level</th>
-          </tr>
-        </thead>
-        <tbody>
+        <tbody className='text-sm'>
           {userInfo.languages.map((lang, index) => (
-            <tr key={index}>
-              <td>{Object.keys(lang)[0]}</td>
-              <td>{Object.values(lang)[0]}</td>
+            <tr key={index} 
+              onMouseOver={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}>
+              <td>{lang.language} : {lang.level}</td>
               <td>
-                <button onClick={() => handleDeleteLanguage(index)}  className='cursor-pointer'>
-                  <FaTrash  />
-                </button>
+                {hoveredIndex === index && (
+                  <FaTrashAlt
+                    className='text-red-500 cursor-pointer ms-auto text-end'
+                    onClick={() => handleDeleteLanguage(index)}
+                  />
+                )}
               </td>
-              
             </tr>
           ))}
         </tbody>

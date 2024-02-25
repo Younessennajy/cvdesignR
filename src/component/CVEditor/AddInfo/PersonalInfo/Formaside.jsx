@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 import selectNationnality from './../../../../asset/Naionnality';
-import {modifierInfo} from './../../../store/Slice';
+import {modifierInfo,addLangue} from './../../../store/Slice';
 
 function Formaside({sethidden }) {
-    const [position, setPosition] = useState('Technicien spécialisé en developpement digital option fullstack');
-    const [catchphrase, setCatchphrase] = useState(`
-      Intéressé par un stage, toutes opportunités de travail, collaborations, nouveaux projets et freelance.
-      J'ai un caractère d'engagement total avec un bon relationnel, une grande capacité d'écoute, et une grande implication avec des idées de carrière ambitieuses.
-      Je suis particulièrement intéressé par le développement des applications web en utilisant (React JS, Laravel, Tailwind CSS).
-    `);
-    const [email, setEmail] = useState('younessennajy30@gmail.com');
-    const [mobileNumber, setMobileNumber] = useState('0649-962806');
-    const [homeAddress, setHomeAddress] = useState('Fés');
-    const [mobility, setMobility] = useState('Nationnel');
-    const [dateOfBirth, setDateOfBirth] = useState('10-02-2000');
-    const [maritalStatus, setMaritalStatus] = useState('Single');
-    const [nationality, setNationality] = useState('moroccan');
-    const [profileImage] = useState('');
-    const [language, setLanguage] = useState('');
-    const [languageLevel, setLanguageLevel] = useState(0);
-    const [Centreinteret, setCentreinteret] = useState('');
-    const [Resiaux, setResiaux] = useState('');
-    const dispatch =useDispatch()
+  const userInfo = useSelector((state) => state.informations.listinfo[0]);
+  
+  const [position, setPosition] = useState('Technicien spécialisé en developpement digital option fullstack');
+  const [catchphrase, setCatchphrase] = useState(`
+  Intéressé par un stage, toutes opportunités de travail, collaborations, nouveaux projets et freelance.
+  J'ai un caractère d'engagement total avec un bon relationnel, une grande capacité d'écoute, et une grande implication avec des idées de carrière ambitieuses.
+  Je suis particulièrement intéressé par le développement des applications web en utilisant (React JS, Laravel, Tailwind CSS).
+  `);
+  const [email, setEmail] = useState('younessennajy30@gmail.com');
+  const [mobileNumber, setMobileNumber] = useState('0649-962806');
+  const [homeAddress, setHomeAddress] = useState('Fés');
+  const [mobility, setMobility] = useState('Nationnel');
+  const [dateOfBirth, setDateOfBirth] = useState('10-02-2000');
+  const [maritalStatus, setMaritalStatus] = useState('Single');
+  const [nationality, setNationality] = useState('moroccan');
+  const [profileImage] = useState('');
+  const [language, setLanguage] = useState();
+  const [level, setLanguageLevel] = useState(0);
+  const [Centreinteret, setCentreinteret] = useState('');
+  const [Resiaux, setResiaux] = useState('');
+  const dispatch =useDispatch()
+  const isLanguageExist = userInfo.languages?.some(lang => lang.language === language);
+   
     const handleSaveInfo = () => {
+      if (!isLanguageExist ) {
         const updatedInfo = {
           position,
           catchphrase,
@@ -36,11 +41,23 @@ function Formaside({sethidden }) {
           maritalStatus,
           nationality,
           profileImage,
-          languages: [{ language, level: languageLevel }],
-          Centreinteret,
-          Resiaux
+          languages: [
+            ...userInfo.languages,
+            { language, level: level }
+          ],
+          Centreinteret: [
+            ...userInfo.Centreinteret,
+            [Centreinteret],
+          ],
+          Resiaux:[
+            ...userInfo.Resiaux,
+            [Resiaux]
+          ]
         };
         dispatch(modifierInfo(updatedInfo));
+        setLanguage('')
+        setLanguageLevel('')
+      }
       };
   return (
     <div>
@@ -98,12 +115,13 @@ function Formaside({sethidden }) {
               <select
               name='languageLevel'
               className='w-full p-1  mb-3'
-              value={languageLevel} 
+              value={level} 
               onChange={(e) => setLanguageLevel(e.target.value)}>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advanced">Advanced</option>
               </select>
+              
 
               <label >Centre D'intéret</label>
               <input type="text" value={Centreinteret} onChange={(e) => setCentreinteret(e.target.value)} 
